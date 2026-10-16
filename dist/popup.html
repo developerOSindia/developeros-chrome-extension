@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeveloperOS QuickTools</title>
+  <link rel="stylesheet" href="src/styles/tokens.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="devos-popup-container">
+    <!-- Header -->
+    <header class="devos-header">
+      <div class="devos-brand">
+        <img src="icons/icon.svg" class="devos-logo" width="24" height="24" alt="DeveloperOS" />
+        <div class="devos-brand-text">
+          <span class="devos-brand-title">DeveloperOS</span>
+          <span class="devos-brand-sub">QuickTools</span>
+        </div>
+      </div>
+      <div class="devos-header-links">
+        <a href="https://developeros.in?utm_source=chrome_extension&utm_medium=header_banner&utm_campaign=powered_by" target="_blank" rel="noopener noreferrer" class="devos-compact-header-pill" title="Powered by DeveloperOS">⚡ Powered by DeveloperOS ↗</a>
+        <a href="https://tools.developeros.in" target="_blank" rel="noopener noreferrer" class="devos-icon-link" title="Central Tools Directory">Tools</a>
+        <a href="https://github.com/developerOSindia" target="_blank" rel="noopener noreferrer" class="devos-icon-link" title="GitHub Repositories">GitHub</a>
+      </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="devos-tool-nav" id="toolNav">
+      <button class="nav-tab active" data-tab="json">JSON</button>
+      <button class="nav-tab" data-tab="jwt">JWT</button>
+      <button class="nav-tab" data-tab="base64">Base64</button>
+      <button class="nav-tab" data-tab="uuid">UUID</button>
+      <button class="nav-tab" data-tab="hash">Hash</button>
+      <button class="nav-tab" data-tab="timestamp">Time</button>
+      <button class="nav-tab" data-tab="color">Color</button>
+      <button class="nav-tab" data-tab="qrcode">QR</button>
+      <button class="nav-tab" data-tab="text">Text</button>
+      <button class="nav-tab nav-tab-highlight" data-tab="launcher">🚀 Launcher</button>
+    </nav>
+
+    <!-- Content Area -->
+    <main class="devos-main-content">
+      <!-- 1. JSON Formatter -->
+      <section class="tool-pane active" id="pane-json">
+        <div class="pane-header">
+          <h3>JSON Formatter & Validator</h3>
+          <div class="pane-controls">
+            <label class="control-label">Indent:
+              <select id="jsonIndent" class="devos-select">
+                <option value="2" selected>2 spaces</option>
+                <option value="4">4 spaces</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <textarea id="jsonInput" class="devos-textarea" placeholder="Paste JSON here...">{ "name": "DeveloperOS", "suite": "QuickTools", "active": true }</textarea>
+        <div class="button-bar">
+          <button id="jsonBtnFormat" class="devos-btn devos-btn-primary">Format</button>
+          <button id="jsonBtnMinify" class="devos-btn">Minify</button>
+          <button id="jsonBtnValidate" class="devos-btn">Validate</button>
+          <button id="jsonBtnClear" class="devos-btn devos-btn-ghost">Clear</button>
+        </div>
+        <div id="jsonStatus" class="status-msg"></div>
+        <div class="output-wrapper">
+          <div class="output-header">
+            <span class="output-label">Output</span>
+            <span id="jsonStats" class="badge"></span>
+            <button id="jsonBtnCopy" class="devos-btn-copy">Copy</button>
+          </div>
+          <pre id="jsonOutput" class="devos-code-output"></pre>
+        </div>
+      </section>
+
+      <!-- 2. JWT Decoder -->
+      <section class="tool-pane" id="pane-jwt">
+        <div class="pane-header">
+          <h3>JWT Decoder</h3>
+          <span class="badge badge-private">100% Client-Side</span>
+        </div>
+        <textarea id="jwtInput" class="devos-textarea" placeholder="Paste encoded JWT token here (e.g. eyJhbGciOi...)"></textarea>
+        <div class="button-bar">
+          <button id="jwtBtnDecode" class="devos-btn devos-btn-primary">Decode Token</button>
+          <button id="jwtBtnSample" class="devos-btn">Load Sample</button>
+          <button id="jwtBtnClear" class="devos-btn devos-btn-ghost">Clear</button>
+        </div>
+        <div id="jwtStatus" class="status-msg"></div>
+        
+        <div id="jwtMetaCard" class="info-card" style="display: none;">
+          <div class="meta-row">
+            <span class="meta-label">Status:</span>
+            <span id="jwtExpiryBadge" class="badge"></span>
+            <span id="jwtTimeRemaining" class="meta-val"></span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Algorithm:</span>
+            <span id="jwtAlgVal" class="meta-val"></span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Expires At:</span>
+            <span id="jwtExpVal" class="meta-val"></span>
+          </div>
+        </div>
+
+        <div class="output-wrapper">
+          <div class="output-header">
+            <span class="output-label">Decoded Payload</span>
+            <button id="jwtBtnCopyPayload" class="devos-btn-copy">Copy</button>
+          </div>
+          <pre id="jwtPayloadOutput" class="devos-code-output"></pre>
+        </div>
+
+        <div class="output-wrapper">
+          <div class="output-header">
+            <span class="output-label">Decoded Header</span>
+            <button id="jwtBtnCopyHeader" class="devos-btn-copy">Copy</button>
+          </div>
+          <pre id="jwtHeaderOutput" class="devos-code-output"></pre>
+        </div>
+      </section>
+
+      <!-- 3. Base64 Tool -->
+      <section class="tool-pane" id="pane-base64">
+        <div class="pane-header">
+          <h3>Base64 Encoder / Decoder</h3>
+          <label class="control-label">
+            <input type="checkbox" id="b64UrlSafe"> URL-Safe (-_)
+          </label>
+        </div>
+        <textarea id="b64Input" class="devos-textarea" placeholder="Enter text or base64..."></textarea>
+        <div class="button-bar">
+          <button id="b64BtnEncode" class="devos-btn devos-btn-primary">Encode to Base64</button>
+          <button id="b64BtnDecode" class="devos-btn">Decode from Base64</button>
+          <button id="b64BtnClear" class="devos-btn devos-btn-ghost">Clear</button>
+        </div>
+        <div id="b64Status" class="status-msg"></div>
+        <div class="output-wrapper">
+          <div class="output-header">
+            <span class="output-label">Result</span>
+            <button id="b64BtnCopy" class="devos-btn-copy">Copy</button>
+          </div>
+          <pre id="b64Output" class="devos-code-output"></pre>
+        </div>
+      </section>
+
+      <!-- 4. UUID Generator -->
+      <section class="tool-pane" id="pane-uuid">
+        <div class="pane-header">
+          <h3>UUID v4 Generator</h3>
+        </div>
+        <div class="control-row">
+          <label class="control-label">Quantity:
+            <select id="uuidCount" class="devos-select">
+              <option value="1" selected>1</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="25">25</option>
+            </select>
+          </label>
+          <label class="control-label">
+            <input type="checkbox" id="uuidUppercase"> Uppercase
+          </label>
+          <label class="control-label">
+            <input type="checkbox" id="uuidHyphens" checked> Hyphens
+          </label>
+        </div>
+        <div class="button-bar">
+          <button id="uuidBtnGenerate" class="devos-btn devos-btn-primary">Generate UUIDs</button>
+          <button id="uuidBtnCopy" class="devos-btn">Copy All</button>
+        </div>
+        <div class="output-wrapper">
+          <pre id="uuidOutput" class="devos-code-output" style="min-height: 120px;"></pre>
+        </div>
+      </section>
+
+      <!-- 5. SHA Hash Generator -->
+      <section class="tool-pane" id="pane-hash">
+        <div class="pane-header">
+          <h3>SHA Hash Generator</h3>
+          <span class="badge badge-private">Web Crypto API</span>
+        </div>
+        <textarea id="hashInput" class="devos-textarea" placeholder="Type or paste text to compute hashes in real time..."></textarea>
+        <div class="hash-cards">
+          <div class="hash-item">
+            <div class="hash-item-header">
+              <span class="hash-algo">SHA-256</span>
+              <button class="devos-btn-copy" data-target="hashSha256">Copy</button>
+            </div>
+            <div id="hashSha256" class="hash-value"></div>
+          </div>
+          <div class="hash-item">
+            <div class="hash-item-header">
+              <span class="hash-algo">SHA-512</span>
+              <button class="devos-btn-copy" data-target="hashSha512">Copy</button>
+            </div>
+            <div id="hashSha512" class="hash-value"></div>
+          </div>
+          <div class="hash-item">
+            <div class="hash-item-header">
+              <span class="hash-algo">SHA-1</span>
+              <button class="devos-btn-copy" data-target="hashSha1">Copy</button>
+            </div>
+            <div id="hashSha1" class="hash-value"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Unix Timestamp Converter -->
+      <section class="tool-pane" id="pane-timestamp">
+        <div class="pane-header">
+          <h3>Unix Timestamp Converter</h3>
+        </div>
+        <div class="live-clock-card">
+          <div class="clock-label">Current Epoch (seconds)</div>
+          <div id="liveEpochSeconds" class="clock-value">---</div>
+          <div id="liveIsoTime" class="clock-sub">---</div>
+        </div>
+        <div class="input-group">
+          <label class="input-label">Timestamp to Human Date</label>
+          <div class="input-btn-row">
+            <input type="text" id="tsToDateInput" class="devos-input" placeholder="e.g. 1776326400">
+            <button id="tsBtnConvertDate" class="devos-btn devos-btn-primary">Convert</button>
+          </div>
+        </div>
+        <div id="tsOutputCard" class="info-card" style="display: none;">
+          <div class="meta-row"><span class="meta-label">UTC:</span> <span id="tsUtcVal" class="meta-val"></span></div>
+          <div class="meta-row"><span class="meta-label">Local:</span> <span id="tsLocalVal" class="meta-val"></span></div>
+          <div class="meta-row"><span class="meta-label">ISO:</span> <span id="tsIsoVal" class="meta-val"></span></div>
+          <div class="meta-row"><span class="meta-label">Relative:</span> <span id="tsRelativeVal" class="meta-val"></span></div>
+        </div>
+      </section>
+
+      <!-- 7. Color Converter / Picker -->
+      <section class="tool-pane" id="pane-color">
+        <div class="pane-header">
+          <h3>Color Converter & Picker</h3>
+        </div>
+        <div class="color-picker-box">
+          <input type="color" id="nativeColorPicker" value="#6366f1" class="color-picker-input">
+          <input type="text" id="colorTextInput" class="devos-input" value="#6366f1" placeholder="#HEX, rgb(), or hsl()">
+        </div>
+        <div class="color-swatch-container">
+          <div id="colorSwatch" class="color-swatch" style="background-color: #6366f1;">
+            <span id="colorContrastText" class="swatch-label">Aa</span>
+          </div>
+        </div>
+        <div class="color-formats">
+          <div class="color-row">
+            <span class="color-label">HEX</span>
+            <input type="text" id="colorHexOut" class="devos-input" readonly>
+            <button class="devos-btn-copy" data-target="colorHexOut">Copy</button>
+          </div>
+          <div class="color-row">
+            <span class="color-label">RGB</span>
+            <input type="text" id="colorRgbOut" class="devos-input" readonly>
+            <button class="devos-btn-copy" data-target="colorRgbOut">Copy</button>
+          </div>
+          <div class="color-row">
+            <span class="color-label">HSL</span>
+            <input type="text" id="colorHslOut" class="devos-input" readonly>
+            <button class="devos-btn-copy" data-target="colorHslOut">Copy</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. QR Code Generator -->
+      <section class="tool-pane" id="pane-qrcode">
+        <div class="pane-header">
+          <h3>Offline QR Code Generator</h3>
+          <span class="badge badge-private">Zero Network</span>
+        </div>
+        <input type="text" id="qrInput" class="devos-input" placeholder="Enter text or URL to generate QR code..." value="https://developeros.in">
+        <div class="qr-preview-box">
+          <div id="qrCanvasContainer" class="qr-canvas-wrapper">
+            <canvas id="qrCanvas"></canvas>
+          </div>
+        </div>
+        <div class="button-bar" style="justify-content: center;">
+          <button id="qrBtnDownload" class="devos-btn devos-btn-primary">Download PNG</button>
+          <button id="qrBtnCopySvg" class="devos-btn">Copy SVG</button>
+        </div>
+      </section>
+
+      <!-- 9. Text Toolkit -->
+      <section class="tool-pane" id="pane-text">
+        <div class="pane-header">
+          <h3>Text Toolkit & Case Converter</h3>
+        </div>
+        <textarea id="textInput" class="devos-textarea" placeholder="Enter text to convert case or analyze statistics...">Welcome to DeveloperOS QuickTools!</textarea>
+        <div class="case-button-grid">
+          <button class="devos-btn-pill" data-case="camel">camelCase</button>
+          <button class="devos-btn-pill" data-case="pascal">PascalCase</button>
+          <button class="devos-btn-pill" data-case="snake">snake_case</button>
+          <button class="devos-btn-pill" data-case="kebab">kebab-case</button>
+          <button class="devos-btn-pill" data-case="constant">CONSTANT_CASE</button>
+          <button class="devos-btn-pill" data-case="title">Title Case</button>
+          <button class="devos-btn-pill" data-case="upper">UPPERCASE</button>
+          <button class="devos-btn-pill" data-case="lower">lowercase</button>
+        </div>
+        <div class="text-stats-row">
+          <div class="stat-pill"><span class="stat-num" id="statChars">0</span> chars</div>
+          <div class="stat-pill"><span class="stat-num" id="statCharsNoSpace">0</span> no spaces</div>
+          <div class="stat-pill"><span class="stat-num" id="statWords">0</span> words</div>
+          <div class="stat-pill"><span class="stat-num" id="statLines">0</span> lines</div>
+        </div>
+        <div class="output-wrapper">
+          <div class="output-header">
+            <span class="output-label">Transformed Text</span>
+            <button id="textBtnCopy" class="devos-btn-copy">Copy</button>
+          </div>
+          <textarea id="textOutput" class="devos-textarea" readonly style="min-height: 70px;"></textarea>
+        </div>
+      </section>
+
+      <!-- 10. DeveloperOS Tool Launcher -->
+      <section class="tool-pane" id="pane-launcher">
+        <div class="pane-header">
+          <h3>DeveloperOS Web Catalog</h3>
+          <span id="launcherCountBadge" class="badge">25 Tools</span>
+        </div>
+        <div class="launcher-search-box">
+          <input type="text" id="launcherSearchInput" class="devos-input" placeholder="Search 25+ DeveloperOS web tools...">
+        </div>
+        <div class="category-chips" id="launcherCategoryChips">
+          <!-- Populated by JS -->
+        </div>
+        <div class="tool-catalog-list" id="launcherToolList">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Promotional Banner (Compact Variant) -->
+    <div class="devos-extension-promo" role="region" aria-label="DeveloperOS Ecosystem">
+      <div class="devos-promo-content">
+        <span class="devos-promo-text">Enjoying QuickTools?</span>
+        <span class="devos-promo-sub">Explore 100+ developer utilities &amp; AI tools</span>
+      </div>
+      <a href="https://developeros.in?utm_source=chrome_extension&utm_medium=quicktools_popup&utm_campaign=extension_referral" target="_blank" rel="noopener noreferrer" class="devos-promo-btn">
+        Explore developeros.in ↗
+      </a>
+    </div>
+
+    <!-- Footer Banner -->
+    <footer class="devos-footer" role="contentinfo">
+      <div class="footer-tagline">
+        Built with ❤️ by <a href="https://developeros.in?utm_source=chrome_extension&utm_medium=footer_tagline&utm_campaign=extension_referral" target="_blank" rel="noopener noreferrer">DeveloperOS</a>
+      </div>
+      <div class="footer-links">
+        <a href="https://developeros.in" target="_blank" rel="noopener noreferrer">Home</a>
+        <span>•</span>
+        <a href="https://tools.developeros.in" target="_blank" rel="noopener noreferrer">Tools</a>
+        <span>•</span>
+        <a href="https://github.com/developerOSindia" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <span>•</span>
+        <a href="https://developeros.in/privacy" target="_blank" rel="noopener noreferrer">Privacy</a>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

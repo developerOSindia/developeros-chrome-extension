@@ -1,0 +1,63 @@
+/**
+ * DeveloperOS Chrome Extension — Design System Tokens
+ * Unified visual tokens extracted from official DeveloperOS branding (/Users/kalash/Desktop/developerOS).
+ */
+
+:root {
+  /* Color Palette - Core */
+  --devos-primary: #f97316;
+  --devos-primary-hover: #ea580c;
+  --devos-primary-light: #fb923c;
+  --devos-secondary: #f43f5e;
+  --devos-accent: #06b6d4;
+  --devos-accent-hover: #0891b2;
+  --devos-accent-light: #67e8f9;
+  
+  /* Background & Surfaces */
+  --devos-canvas: #06070a;
+  --devos-surface: #0c0f15;
+  --devos-surface-hover: rgba(255, 255, 255, 0.06);
+  --devos-surface-active: rgba(255, 255, 255, 0.1);
+  --devos-input-bg: #08090c;
+  
+  /* Borders & Dividers */
+  --devos-border: rgba(255, 255, 255, 0.1);
+  --devos-border-subtle: rgba(255, 255, 255, 0.05);
+  --devos-border-focus: #f97316;
+  
+  /* Typography Colors */
+  --devos-text-primary: #f8fafc;
+  --devos-text-secondary: #cbd5e1;
+  --devos-text-muted: #94a3b8;
+  --devos-text-dim: #6b7c94;
+  
+  /* Semantic Statuses */
+  --devos-success: #22c55e;
+  --devos-success-bg: rgba(34, 197, 94, 0.15);
+  --devos-warning: #f59e0b;
+  --devos-warning-bg: rgba(245, 158, 11, 0.15);
+  --devos-danger: #f43f5e;
+  --devos-danger-bg: rgba(244, 63, 94, 0.15);
+  --devos-info: #06b6d4;
+  --devos-info-bg: rgba(6, 182, 212, 0.15);
+  
+  /* Gradients */
+  --devos-gradient-brand: linear-gradient(135deg, #f97316 0%, #f43f5e 52%, #06b6d4 100%);
+  --devos-gradient-accent: linear-gradient(135deg, #ff3b30 0%, #ff5a3d 48%, #ff914d 100%);
+  
+  /* Typography */
+  --devos-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", sans-serif;
+  --devos-font-mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  
+  /* Radii */
+  --devos-radius-sm: 4px;
+  --devos-radius-md: 6px;
+  --devos-radius-lg: 8px;
+  --devos-radius-xl: 12px;
+  --devos-radius-full: 9999px;
+  
+  /* Shadows */
+  --devos-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --devos-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --devos-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+}

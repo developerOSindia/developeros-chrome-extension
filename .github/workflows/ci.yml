@@ -1,0 +1,40 @@
+name: DeveloperOS QuickTools CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-and-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build extension bundle
+        run: |
+          node scripts/build.js
+
+      - name: Run Node test suite
+        run: |
+          node --test tests/test_extension_core.test.js
+
+      - name: Run Python manifest & packaging tests
+        run: |
+          python3 -m unittest discover tests/
+
+      - name: Package extension ZIP
+        run: |
+          python3 scripts/package_extension.py

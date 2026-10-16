@@ -1,0 +1,829 @@
+/**
+ * DeveloperOS QuickTools — Popup Styles
+ * High performance, accessible, dark theme extension popup.
+ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 440px;
+  height: 580px;
+  background-color: var(--devos-canvas);
+  color: var(--devos-text-primary);
+  font-family: var(--devos-font-sans);
+  font-size: 13px;
+  line-height: 1.4;
+  overflow: hidden;
+  user-select: none;
+}
+
+.devos-popup-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Header */
+.devos-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background-color: var(--devos-surface);
+  border-bottom: 1px solid var(--devos-border);
+}
+
+.devos-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.devos-logo {
+  flex-shrink: 0;
+}
+
+.devos-brand-text {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.devos-brand-title {
+  font-weight: 700;
+  font-size: 14px;
+  background: var(--devos-gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.devos-brand-sub {
+  font-size: 11px;
+  color: var(--devos-accent);
+  font-weight: 600;
+}
+
+.devos-header-links {
+  display: flex;
+  gap: 8px;
+}
+
+.devos-icon-link {
+  font-size: 11px;
+  color: var(--devos-text-secondary);
+  text-decoration: none;
+  padding: 2px 6px;
+  border-radius: var(--devos-radius-sm);
+  background-color: rgba(255, 255, 255, 0.05);
+  transition: all 0.15s ease;
+}
+
+.devos-icon-link:hover {
+  color: var(--devos-text-primary);
+  background-color: var(--devos-primary);
+}
+
+/* Tool Navigation */
+.devos-tool-nav {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  background-color: var(--devos-input-bg);
+  border-bottom: 1px solid var(--devos-border);
+  padding: 4px 6px;
+  gap: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--devos-border) transparent;
+}
+
+.devos-tool-nav::-webkit-scrollbar {
+  height: 3px;
+}
+
+.devos-tool-nav::-webkit-scrollbar-thumb {
+  background-color: var(--devos-border);
+  border-radius: 2px;
+}
+
+.nav-tab {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--devos-text-secondary);
+  padding: 4px 9px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: var(--devos-radius-md);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nav-tab:hover {
+  color: var(--devos-text-primary);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav-tab.active {
+  color: #ffffff;
+  background-color: var(--devos-primary);
+  border-color: var(--devos-primary-light);
+}
+
+.nav-tab-highlight {
+  border-color: rgba(6, 182, 212, 0.4);
+  color: var(--devos-accent);
+}
+
+.nav-tab-highlight.active {
+  background: var(--devos-gradient-accent);
+  color: #ffffff;
+}
+
+/* Main Content Area */
+.devos-main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 14px;
+  position: relative;
+}
+
+.devos-main-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.devos-main-content::-webkit-scrollbar-thumb {
+  background-color: var(--devos-border);
+  border-radius: 3px;
+}
+
+.tool-pane {
+  display: none;
+  animation: fadeIn 0.15s ease;
+}
+
+.tool-pane.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.pane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.pane-header h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--devos-text-primary);
+}
+
+.badge {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: var(--devos-radius-full);
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--devos-text-secondary);
+}
+
+.badge-private {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: var(--devos-success);
+}
+
+.badge-expired {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: var(--devos-danger);
+}
+
+/* Form Controls */
+.devos-textarea {
+  width: 100%;
+  min-height: 90px;
+  background-color: var(--devos-input-bg);
+  border: 1px solid var(--devos-border);
+  border-radius: var(--devos-radius-md);
+  color: var(--devos-text-primary);
+  font-family: var(--devos-font-mono);
+  font-size: 11px;
+  padding: 8px;
+  resize: vertical;
+  margin-bottom: 8px;
+  outline: none;
+  user-select: text;
+}
+
+.devos-textarea:focus,
+.devos-input:focus {
+  border-color: var(--devos-border-focus);
+  box-shadow: 0 0 0 1px var(--devos-primary);
+}
+
+.devos-input {
+  width: 100%;
+  background-color: var(--devos-input-bg);
+  border: 1px solid var(--devos-border);
+  border-radius: var(--devos-radius-md);
+  color: var(--devos-text-primary);
+  font-family: var(--devos-font-mono);
+  font-size: 11px;
+  padding: 6px 10px;
+  outline: none;
+  user-select: text;
+}
+
+.devos-select {
+  background-color: var(--devos-surface);
+  border: 1px solid var(--devos-border);
+  color: var(--devos-text-primary);
+  border-radius: var(--devos-radius-sm);
+  padding: 2px 6px;
+  font-size: 11px;
+  outline: none;
+}
+
+.control-label {
+  font-size: 11px;
+  color: var(--devos-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+/* Buttons */
+.button-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.devos-btn {
+  background-color: var(--devos-surface);
+  border: 1px solid var(--devos-border);
+  color: var(--devos-text-primary);
+  padding: 5px 12px;
+  border-radius: var(--devos-radius-md);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.devos-btn:hover {
+  background-color: var(--devos-surface-hover);
+  border-color: var(--devos-border-focus);
+}
+
+.devos-btn-primary {
+  background-color: var(--devos-primary);
+  border-color: var(--devos-primary-light);
+  color: #ffffff;
+}
+
+.devos-btn-primary:hover {
+  background-color: var(--devos-primary-hover);
+}
+
+.devos-btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--devos-text-muted);
+}
+
+.devos-btn-ghost:hover {
+  color: var(--devos-text-primary);
+}
+
+.devos-btn-copy {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--devos-border);
+  color: var(--devos-text-secondary);
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: var(--devos-radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.devos-btn-copy:hover {
+  color: var(--devos-text-primary);
+  background: var(--devos-primary);
+  border-color: var(--devos-primary-light);
+}
+
+.devos-btn-copy.copied {
+  background: var(--devos-success) !important;
+  color: #ffffff !important;
+  border-color: var(--devos-success) !important;
+}
+
+.devos-btn-pill {
+  background-color: var(--devos-surface);
+  border: 1px solid var(--devos-border);
+  color: var(--devos-text-secondary);
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: var(--devos-radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.devos-btn-pill:hover {
+  color: var(--devos-text-primary);
+  border-color: var(--devos-primary);
+}
+
+/* Outputs & Cards */
+.output-wrapper {
+  margin-top: 8px;
+  border: 1px solid var(--devos-border);
+  border-radius: var(--devos-radius-md);
+  background-color: var(--devos-input-bg);
+  overflow: hidden;
+}
+
+.output-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  background-color: var(--devos-surface);
+  border-bottom: 1px solid var(--devos-border);
+}
+
+.output-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--devos-text-muted);
+}
+
+.devos-code-output {
+  padding: 8px;
+  font-family: var(--devos-font-mono);
+  font-size: 11px;
+  color: var(--devos-text-primary);
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 140px;
+  overflow-y: auto;
+  user-select: text;
+}
+
+.status-msg {
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: var(--devos-radius-sm);
+  margin-bottom: 8px;
+  display: none;
+}
+
+.status-msg.error {
+  display: block;
+  background-color: var(--devos-danger-bg);
+  color: var(--devos-danger);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.status-msg.success {
+  display: block;
+  background-color: var(--devos-success-bg);
+  color: var(--devos-success);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.info-card {
+  background-color: var(--devos-surface);
+  border: 1px solid var(--devos-border);
+  border-radius: var(--devos-radius-md);
+  padding: 8px 10px;
+  margin-bottom: 8px;
+}
+
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  margin-bottom: 3px;
+}
+
+.meta-row:last-child {
+  margin-bottom: 0;
+}
+
+.meta-label {
+  color: var(--devos-text-muted);
+  width: 75px;
+  flex-shrink: 0;
+}
+
+.meta-val {
+  color: var(--devos-text-primary);
+  font-family: var(--devos-font-mono);
+  font-size: 11px;
+}
+
+/* Tool Specifics */
+.hash-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.hash-item {
+  background-color: var(--devos-surface);
+  border: 1px solid var(--devos-border);
+  border-radius: var(--devos-radius-md);
+  padding: 6px 10px;
+}
+
+.hash-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.hash-algo {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--devos-accent);
+}
+
+.hash-value {
+  font-family: var(--devos-font-mono);
+  font-size: 10px;
+  color: var(--devos-text-primary);
+  word-break: break-all;
+  user-select: text;
+}
+
+/* Live Clock */
+.live-clock-card {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(56, 189, 248, 0.1));
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: var(--devos-radius-md);
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.clock-label {
+  font-size: 10px;
+  color: var(--devos-text-muted);
+  text-transform: uppercase;
+}
+
+.clock-value {
+  font-family: var(--devos-font-mono);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--devos-accent);
+  margin: 4px 0;
+}
+
+.clock-sub {
+  font-size: 11px;
+  color: var(--devos-text-secondary);
+}
+
+.input-btn-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+/* Color Tool */
+.color-picker-box {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.color-picker-input {
+  width: 40px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.color-swatch-container {
+  margin-bottom: 10px;
+}
+
+.color-swatch {
+  height: 48px;
+  border-radius: var(--devos-radius-md);
+  border: 1px solid var(--devos-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swatch-label {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.color-formats {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.color-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.color-label {
+  width: 35px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--devos-text-muted);
+}
+
+/* QR Code */
+.qr-preview-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  background-color: var(--devos-surface);
+  border: 1px solid var(--devos-border);
+  border-radius: var(--devos-radius-md);
+  margin: 10px 0;
+}
+
+.qr-canvas-wrapper {
+  background: #ffffff;
+  padding: 8px;
+  border-radius: var(--devos-radius-sm);
+  display: inline-block;
+}
+
+/* Text Toolkit */
+.case-button-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.text-stats-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.stat-pill {
+  background-color: var(--devos-surface);
+  border: 1px solid var(--devos-border);
+  border-radius: var(--devos-radius-sm);
+  padding: 3px 6px;
+  font-size: 10px;
+  color: var(--devos-text-secondary);
+}
+
+.stat-num {
+  color: var(--devos-accent);
+  font-weight: 700;
+}
+
+/* Tool Launcher */
+.launcher-search-box {
+  margin-bottom: 8px;
+}
+
+.category-chips {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+}
+
+.cat-chip {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: var(--devos-radius-full);
+  background-color: var(--devos-surface);
+  border: 1px solid var(--devos-border);
+  color: var(--devos-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cat-chip.active {
+  background-color: var(--devos-primary);
+  border-color: var(--devos-primary-light);
+  color: #ffffff;
+}
+
+.tool-catalog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.catalog-card {
+  background-color: var(--devos-surface);
+  border: 1px solid var(--devos-border);
+  border-radius: var(--devos-radius-md);
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  transition: all 0.15s ease;
+}
+
+.catalog-card:hover {
+  border-color: var(--devos-primary);
+  background-color: var(--devos-surface-hover);
+}
+
+.catalog-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.catalog-card-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.catalog-card-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--devos-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.catalog-card-cat {
+  font-size: 9px;
+  padding: 1px 4px;
+  border-radius: var(--devos-radius-sm);
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--devos-primary-light);
+  font-weight: 600;
+}
+
+.catalog-card-desc {
+  font-size: 11px;
+  color: var(--devos-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.catalog-launch-btn {
+  background: var(--devos-primary);
+  border: 1px solid var(--devos-primary-light);
+  color: #ffffff;
+  padding: 3px 8px;
+  border-radius: var(--devos-radius-sm);
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease;
+}
+
+.catalog-launch-btn:hover {
+  background: var(--devos-primary-hover);
+}
+
+/* Footer */
+.devos-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px;
+  background-color: var(--devos-surface);
+  border-top: 1px solid var(--devos-border);
+  font-size: 10px;
+  color: var(--devos-text-muted);
+}
+
+.footer-tagline a {
+  color: var(--devos-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer-tagline a:hover {
+  text-decoration: underline;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-links a {
+  color: var(--devos-accent);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Compact Header Banner */
+.devos-compact-header-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(249, 115, 22, 0.12);
+  border: 1px solid rgba(249, 115, 22, 0.35);
+  color: var(--devos-primary);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: var(--devos-radius-full);
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.devos-compact-header-pill:hover {
+  background: rgba(249, 115, 22, 0.22);
+  border-color: var(--devos-primary);
+}
+
+/* Extension Promotional Banner */
+.devos-extension-promo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, rgba(244, 63, 94, 0.04) 50%, rgba(6, 182, 212, 0.06) 100%), var(--devos-surface);
+  border-top: 1px solid var(--devos-border);
+  gap: 8px;
+}
+
+.devos-promo-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.devos-promo-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--devos-text-primary);
+}
+
+.devos-promo-sub {
+  font-size: 9.5px;
+  color: var(--devos-text-secondary);
+}
+
+.devos-promo-btn {
+  background: var(--devos-primary);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: var(--devos-radius-sm);
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(249, 115, 22, 0.3);
+  transition: background-color 0.15s ease;
+}
+
+.devos-promo-btn:hover {
+  background: var(--devos-primary-hover);
+}
+
