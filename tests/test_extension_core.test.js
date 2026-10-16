@@ -274,7 +274,7 @@ describe('Tool 10: Searchable Tool Launcher', () => {
   test('resolves live URL or fallback SEO page URL', () => {
     assert.strictEqual(
       resolveLaunchUrl(mockTools[0]),
-      'https://tools.developeros.in/tools/json-formatter.html'
+      'https://toolkit.developeros.in/tools/json-formatter.html'
     );
     assert.strictEqual(
       resolveLaunchUrl(mockTools[1]),

@@ -11,7 +11,7 @@ const rawRegistry = {
   "ecosystem": {
     "name": "DeveloperOS",
     "website": "https://developeros.in",
-    "tools_directory": "https://tools.developeros.in",
+    "tools_directory": "https://toolkit.developeros.in",
     "github_org": "https://github.com/developerOSindia"
   },
   "tools": [
@@ -1713,8 +1713,8 @@ export function resolveLaunchUrl(tool              )         {
   if (tool.live_url && tool.live_url.startsWith('https://')) {
     return tool.live_url;
   }
-  // Otherwise open the static SEO landing page on tools.developeros.in
-  return `https://tools.developeros.in/tools/${tool.seo_slug}.html`;
+  // Otherwise open the static SEO landing page on toolkit.developeros.in
+  return `https://toolkit.developeros.in/tools/${tool.seo_slug}.html`;
 }
 
 export function openExternalUrl(url        )       {

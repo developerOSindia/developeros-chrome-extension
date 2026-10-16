@@ -59,8 +59,8 @@ export function resolveLaunchUrl(tool: RegistryTool): string {
   if (tool.live_url && tool.live_url.startsWith('https://')) {
     return tool.live_url;
   }
-  // Otherwise open the static SEO landing page on tools.developeros.in
-  return `https://tools.developeros.in/tools/${tool.seo_slug}.html`;
+  // Otherwise open the static SEO landing page on toolkit.developeros.in
+  return `https://toolkit.developeros.in/tools/${tool.seo_slug}.html`;
 }
 
 export function openExternalUrl(url: string): void {

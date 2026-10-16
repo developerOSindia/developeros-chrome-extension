@@ -34,7 +34,7 @@ This data is stored solely on your local device and is never shared or synchroni
 
 DeveloperOS QuickTools runs **100% offline**:
 - All operations (formatting, minification, hashing, decoding, color conversion, QR generation) run entirely client-side.
-- The only outbound network action occurs when you intentionally click a link to an external website (such as `https://developeros.in` or `https://tools.developeros.in`), which opens standard navigation tabs in your browser.
+- The only outbound network action occurs when you intentionally click a link to an external website (such as `https://developeros.in` or `https://toolkit.developeros.in`), which opens standard navigation tabs in your browser.
 
 ---
 

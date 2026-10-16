@@ -113,7 +113,7 @@ npm run package
 
 DeveloperOS QuickTools seamlessly connects with the broader DeveloperOS ecosystem:
 - **Main Hub**: [developeros.in](https://developeros.in)
-- **Central Tools Directory**: [tools.developeros.in](https://tools.developeros.in)
+- **Central Tools Directory**: [toolkit.developeros.in](https://toolkit.developeros.in)
 - **GitHub Organization**: [github.com/developerOSindia](https://github.com/developerOSindia)
 
 ---
