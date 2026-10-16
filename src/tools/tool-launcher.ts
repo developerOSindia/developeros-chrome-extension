@@ -38,11 +38,15 @@ export function searchTools(
     // Search query check
     if (!q) return true;
 
+    const suiteName = typeof tool.parent_suite === 'string'
+      ? tool.parent_suite
+      : (tool.parent_suite?.name || tool.parent_suite?.id || '');
+
     return (
       tool.name.toLowerCase().includes(q) ||
       tool.short_description.toLowerCase().includes(q) ||
       tool.category.toLowerCase().includes(q) ||
-      tool.parent_suite.toLowerCase().includes(q) ||
+      suiteName.toLowerCase().includes(q) ||
       tool.seo_slug.toLowerCase().includes(q)
     );
   });
